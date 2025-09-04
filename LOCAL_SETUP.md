@@ -135,6 +135,16 @@ brew install git
 git --version
 ```
 
+### 8. Azure Developer CLI
+
+Azureリソースの利用のために必要です。
+
+#### インストール方法
+
+```bash
+brew tap azure/azd && brew install azd
+```
+
 ## 🚀 プロジェクトセットアップ
 
 ### 1. リポジトリのクローン
@@ -168,7 +178,7 @@ pip install -r requirements.txt
 
 ### 4. ローカル設定ファイルの確認
 
-町田から以下のようなファイルをもらって`app/local.settings.json`に置いてください。
+notionに書いてあるJSONを`app/local.settings.json`に置いてください。
 
 ```json
 {
@@ -184,7 +194,13 @@ pip install -r requirements.txt
 
 ## 🔧 開発環境の起動
 
-### 1. Azuriteの起動
+### 1. Azure Developer CLIでログイン
+
+```bash
+azd auth login
+```
+
+### 2. Azuriteの起動
 
 新しいターミナルウィンドウを開いて：
 
@@ -192,7 +208,7 @@ pip install -r requirements.txt
 azurite --silent --location ~/azurite --debug ~/azurite/debug.log
 ```
 
-### 2. Azure Functionsの起動
+### 3. Azure Functionsの起動
 
 appディレクトリから：
 
