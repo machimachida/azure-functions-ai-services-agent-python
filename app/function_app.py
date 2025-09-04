@@ -145,6 +145,8 @@ def process_queue_message(msg: func.QueueMessage,  outputQueueItem: func.Out[str
     # correlation_idは書き換えないでください！エージェントにToolUseの返却値を返すために必要です。
     correlation_id = messagepayload['CorrelationId']
 
+    # ここより下が実装箇所です #
+
     # ToolUseの説明文で定義したlocationフィールド
     location = messagepayload['location']
 
@@ -153,6 +155,8 @@ def process_queue_message(msg: func.QueueMessage,  outputQueueItem: func.Out[str
         'Value': 'Weather is 74 degrees and sunny in ' + location,
         'CorrelationId': correlation_id  # CorrelationIdは必ず含めてください！
     }
+
+    # これ以降はお決まりの処理 #
     outputQueueItem.set(json.dumps(result_message).encode('utf-8'))
 
     logging.info(f"Sent message to queue: {output_queue_name} with message {result_message}")

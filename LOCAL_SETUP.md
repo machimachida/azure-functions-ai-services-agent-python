@@ -238,6 +238,13 @@ curl -X POST http://localhost:7071/api/prompt \
 - 関数`initialize_client()`の中にある`project_client.agents.create_agent`の中にある`instructions`はエージェントに入力するシステムプロンプトです。書き換えることで、エージェントの動きが変わります。
 - 関数`process_queue_message`は、エージェントに渡すツールの一例です。この例では、場所をlocationとして受け取り、ダミーのお天気情報をValueに入れて返します。
 
+関数の上に書いている以下の文言はツールの名前です。ツールを作る際は適宜書き換えてください。
+```python
+@app.function_name(name="GetWeather")
+```
+
+
+
 ライブラリをインストールする際は`app/requirements.txt`にライブラリの名前を追加します。
 その後、以下のコマンドを入力します。
 
