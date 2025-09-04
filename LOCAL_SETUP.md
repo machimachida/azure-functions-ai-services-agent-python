@@ -1,8 +1,11 @@
 # macOS ローカル開発環境セットアップガイド
 
-このドキュメントでは、Azure Functions AI Services Agent PythonプロジェクトをmacOSでローカル開発するための環境セットアップ方法を、プログラミング初心者の方にも分かりやすく説明します。
+このドキュメントでは、Azure Functions AI Services Agent PythonプロジェクトをmacOSでローカル開発するための環境セットアップ方法を説明します。
 
 ## 📋 必要なソフトウェア
+
+コマンド類はターミナルで実行してください。
+また、VSCodeやCursorなどをインストールしておいてください。
 
 ### 1. Homebrew（パッケージマネージャー）
 
