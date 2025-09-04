@@ -142,13 +142,16 @@ def process_queue_message(msg: func.QueueMessage,  outputQueueItem: func.Out[str
     logging.info('Python queue trigger function processed a queue item')
 
     messagepayload = json.loads(msg.get_body().decode('utf-8'))
-    location = messagepayload['location']
+    # correlation_idは書き換えないでください！エージェントにToolUseの返却値を返すために必要です。
     correlation_id = messagepayload['CorrelationId']
 
-    # Send message to queue. Sends a mock message for the weather
+    # ToolUseの説明文で定義したlocationフィールド
+    location = messagepayload['location']
+
+    # このツールの返す文字列。Valueの中に文字列を入れる形で書いてください。
     result_message = {
         'Value': 'Weather is 74 degrees and sunny in ' + location,
-        'CorrelationId': correlation_id
+        'CorrelationId': correlation_id  # CorrelationIdは必ず含めてください！
     }
     outputQueueItem.set(json.dumps(result_message).encode('utf-8'))
 

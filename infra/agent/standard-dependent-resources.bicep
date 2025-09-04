@@ -129,7 +129,7 @@ resource aiSearch 'Microsoft.Search/searchServices@2024-06-01-preview' = if(!acs
     semanticSearch: 'disabled'
   }
   sku: {
-    name: 'standard'
+    name: 'basic'
   }
 }
 
@@ -186,7 +186,7 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2024-11-15' = if
     disableLocalAuth: true
     enableAutomaticFailover: false
     enableMultipleWriteLocations: false
-    enableFreeTier: false
+    enableFreeTier: true
     locations: [
       {
         locationName: location
@@ -195,12 +195,17 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2024-11-15' = if
       }
     ]
     databaseAccountOfferType: 'Standard'
+    capabilities: [
+      {
+        name: 'EnableServerless'
+      }
+    ]
   }
 }
 
 // Outputs
 
-output aiServicesName string =  aiServiceExists ? existingAIServiceAccount.name : aiServicesName
+output aiServicesName string =  aiServiceExists ? existingAIServiceAccount.name : aiServices.name
 output aiservicesID string = aiServiceExists ? existingAIServiceAccount.id : aiServices.id
 output aiservicesTarget string = aiServiceExists ? existingAIServiceAccount.properties.endpoint : aiServices.properties.endpoint
 output aiServiceAccountResourceGroupName string = aiServiceExists ? aiServiceParts[4] : resourceGroup().name
